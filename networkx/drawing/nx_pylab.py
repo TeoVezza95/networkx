@@ -17,6 +17,7 @@ See Also
  - :obj:`matplotlib.patches.FancyArrowPatch`
 """
 from numbers import Number
+import matplotlib.pyplot as plt
 import networkx as nx
 from networkx.drawing.layout import (
     shell_layout,

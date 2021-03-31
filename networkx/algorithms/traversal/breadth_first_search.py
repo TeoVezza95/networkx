@@ -1,6 +1,6 @@
 """Basic algorithms for breadth-first searching the nodes of a graph."""
-import networkx as nx
 from collections import deque
+import networkx as nx
 
 __all__ = [
     "bfs_edges",
@@ -70,6 +70,7 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
         neighbors = lambda node: iter(sort_neighbors(_neighbors(node)))
 
     visited = {source}
+    print( "nodo radice " +source + " ( depth: 0 )")
     if depth_limit is None:
         depth_limit = len(G)
     queue = deque([(source, depth_limit, neighbors(source))])
@@ -81,7 +82,10 @@ def generic_bfs_edges(G, source, neighbors=None, depth_limit=None, sort_neighbor
                 yield parent, child
                 visited.add(child)
                 if depth_now > 1:
+                    x = "nodo sotto esame " + child + " ( depth: "+str(abs(depth_now-len(G))+1)+" )"
+                    print(x)
                     queue.append((child, depth_now - 1, neighbors(child)))
+
         except StopIteration:
             queue.popleft()
 
@@ -405,3 +409,4 @@ def descendants_at_distance(G, source, distance):
         queue = next_vertices
 
     return set()
+
